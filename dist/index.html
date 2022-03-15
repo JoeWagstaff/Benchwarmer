@@ -1,0 +1,164 @@
+Html Webpack Plugin:
+<pre>
+  Error: Child compilation failed:
+  Module build failed (from ./node_modules/babel-loader/lib/index.js):
+  SyntaxError: /home/joe/hackreactor/mvp/client/src/index.html: Unexpected token (1:0)
+  
+  > 1 | <!DOCTYPE html>
+      | ^
+    2 | <html lang="en"><head><script defer src="main.js"></script></head>
+    3 |   <head>
+    4 |     <meta charset="UTF-8">
+      at instantiate (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:72:32)
+      at constructor (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:358:12)
+      at Object.raise (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:3334:19)
+      at Object.unexpected (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:3372:16)
+      at Object.parseExprAtom (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:13000:24)
+      at Object.parseExprAtom (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:8033:20)
+      at Object.parseExprSubscripts (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:1256  7:23)
+      at Object.parseUpdate (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:12546:21)
+      at Object.parseMaybeUnary (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:12517:23  )
+      at Object.parseMaybeUnaryOrPrivate (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js  :12311:61)
+  ModuleBuildError: Module build failed (from ./node_modules/babel-loader/lib/index.js):
+  SyntaxError: /home/joe/hackreactor/mvp/client/src/index.html: Unexpected token (1:0)
+  
+  > 1 | <!DOCTYPE html>
+      | ^
+    2 | <html lang="en">
+    3 |   <head>
+    4 |     <meta charset="UTF-8">
+      at instantiate (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:72:32)
+      at constructor (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:358:12)
+      at Object.raise (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:3334:19)
+      at Object.unexpected (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:3372:16)
+      at Object.parseExprAtom (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:13000:24)
+      at Object.parseExprAtom (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:8033:20)
+      at Object.parseExprSubscripts (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:1256  7:23)
+      at Object.parseUpdate (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:12546:21)
+      at Object.parseMaybeUnary (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js:12517:23  )
+      at Object.parseMaybeUnaryOrPrivate (/home/joe/hackreactor/mvp/node_modules/@babel/parser/lib/index.js  :12311:61)
+      at processResult (/home/joe/hackreactor/mvp/node_modules/webpack/lib/NormalModule.js:758:19)
+      at /home/joe/hackreactor/mvp/node_modules/webpack/lib/NormalModule.js:860:5
+      at /home/joe/hackreactor/mvp/node_modules/loader-runner/lib/LoaderRunner.js:399:11
+      at /home/joe/hackreactor/mvp/node_modules/loader-runner/lib/LoaderRunner.js:251:18
+      at context.callback (/home/joe/hackreactor/mvp/node_modules/loader-runner/lib/LoaderRunner.js:124:13)      at /home/joe/hackreactor/mvp/node_modules/babel-loader/lib/index.js:59:103
+  
+  - index.js:72 instantiate
+    [mvp]/[@babel]/parser/lib/index.js:72:32
+  
+  - index.js:358 constructor
+    [mvp]/[@babel]/parser/lib/index.js:358:12
+  
+  - index.js:3334 Object.raise
+    [mvp]/[@babel]/parser/lib/index.js:3334:19
+  
+  - index.js:3372 Object.unexpected
+    [mvp]/[@babel]/parser/lib/index.js:3372:16
+  
+  - index.js:13000 Object.parseExprAtom
+    [mvp]/[@babel]/parser/lib/index.js:13000:24
+  
+  - index.js:8033 Object.parseExprAtom
+    [mvp]/[@babel]/parser/lib/index.js:8033:20
+  
+  - index.js:12567 Object.parseExprSubscripts
+    [mvp]/[@babel]/parser/lib/index.js:12567:23
+  
+  - index.js:12546 Object.parseUpdate
+    [mvp]/[@babel]/parser/lib/index.js:12546:21
+  
+  - index.js:12517 Object.parseMaybeUnary
+    [mvp]/[@babel]/parser/lib/index.js:12517:23
+  
+  - index.js:12311 Object.parseMaybeUnaryOrPrivate
+    [mvp]/[@babel]/parser/lib/index.js:12311:61
+  
+  - ModuleBuildError: Module build failed (from ./node_modules/babel-loader/lib/index.js):
+  
+  - SyntaxError: /home/joe/hackreactor/mvp/client/src/index.html: Unexpected token (1:0)
+  
+  - > 1 | <!DOCTYPE html>
+  
+  -     | ^
+  
+  -   2 | <html lang="en">
+  
+  -   3 |   <head>
+  
+  -   4 |     <meta charset="UTF-8">
+  
+  - index.js:72 instantiate
+    [mvp]/[@babel]/parser/lib/index.js:72:32
+  
+  - index.js:358 constructor
+    [mvp]/[@babel]/parser/lib/index.js:358:12
+  
+  - index.js:3334 Object.raise
+    [mvp]/[@babel]/parser/lib/index.js:3334:19
+  
+  - index.js:3372 Object.unexpected
+    [mvp]/[@babel]/parser/lib/index.js:3372:16
+  
+  - index.js:13000 Object.parseExprAtom
+    [mvp]/[@babel]/parser/lib/index.js:13000:24
+  
+  - index.js:8033 Object.parseExprAtom
+    [mvp]/[@babel]/parser/lib/index.js:8033:20
+  
+  - index.js:12567 Object.parseExprSubscripts
+    [mvp]/[@babel]/parser/lib/index.js:12567:23
+  
+  - index.js:12546 Object.parseUpdate
+    [mvp]/[@babel]/parser/lib/index.js:12546:21
+  
+  - index.js:12517 Object.parseMaybeUnary
+    [mvp]/[@babel]/parser/lib/index.js:12517:23
+  
+  - index.js:12311 Object.parseMaybeUnaryOrPrivate
+    [mvp]/[@babel]/parser/lib/index.js:12311:61
+  
+  - NormalModule.js:758 processResult
+    [mvp]/[webpack]/lib/NormalModule.js:758:19
+  
+  - NormalModule.js:860 
+    [mvp]/[webpack]/lib/NormalModule.js:860:5
+  
+  - LoaderRunner.js:399 
+    [mvp]/[loader-runner]/lib/LoaderRunner.js:399:11
+  
+  - LoaderRunner.js:251 
+    [mvp]/[loader-runner]/lib/LoaderRunner.js:251:18
+  
+  - LoaderRunner.js:124 context.callback
+    [mvp]/[loader-runner]/lib/LoaderRunner.js:124:13
+  
+  - index.js:59 
+    [mvp]/[babel-loader]/lib/index.js:59:103
+  
+  - child-compiler.js:169 
+    [mvp]/[html-webpack-plugin]/lib/child-compiler.js:169:18
+  
+  - Compiler.js:564 
+    [mvp]/[webpack]/lib/Compiler.js:564:11
+  
+  - Compiler.js:1183 
+    [mvp]/[webpack]/lib/Compiler.js:1183:17
+  
+  
+  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
+    [mvp]/[tapable]/lib/Hook.js:18:14
+  
+  - Compiler.js:1179 
+    [mvp]/[webpack]/lib/Compiler.js:1179:33
+  
+  - Compilation.js:2786 finalCallback
+    [mvp]/[webpack]/lib/Compilation.js:2786:11
+  
+  - Compilation.js:3091 
+    [mvp]/[webpack]/lib/Compilation.js:3091:11
+  
+  
+  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
+    [mvp]/[tapable]/lib/Hook.js:18:14
+  
+</pre>
