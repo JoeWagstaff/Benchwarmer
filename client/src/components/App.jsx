@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Map from './Map.jsx';
 import AddBench from './AddBench.jsx';
 
@@ -28,7 +29,7 @@ const StartButton = styled.button`
   &: hover {
     cursor: pointer;
   }
-`
+`;
 const StartText = styled.p`
   color: #CC7000;
   font-size: 50px;
@@ -36,27 +37,15 @@ const StartText = styled.p`
   -webkit-text-stroke-color: black;
   text-align: center;
   margin:auto;
-`
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       clicked: false,
-      benches: [
-        {
-          name: "Sand Point Bench",
-          description: "This is a great bench. It's comfy and looks at Lake Tahoe!",
-          location: {
-            lat: 39.196730,
-            lng: -119.933442
-          },
-          score: 4,
-          photos: [
-            "https://i.ibb.co/z2s2PFH/beachbench.jpg"
-          ]
-        },
-      ],
+      benches: [],
       startingLoc: {
         lat: 39.197594,
         lng: -119.933764
@@ -67,13 +56,43 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    axios({
+      method: 'get',
+      url: '/api/benches',
+    })
+    .then((response) => {
+      this.setState({
+        benches: response.data
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   handleAddBench(bench){
     const updatedBenches = this.state.benches;
     updatedBenches.push(bench);
-    console.log('at app', bench);
+    // console.log('at app', bench);
     this.setState({
       benches: updatedBenches,
-    })
+    });
+    axios({
+      method: 'post',
+      url: '/api/benches',
+      data: {
+        name: bench.name,
+        description: bench.description,
+        photo_url: null,
+        reviews: bench.review,
+        score: bench.score,
+        location: {
+          lat: bench.location.lat,
+          lng: bench.location.lng
+        }
+      }
+    });
   }
 
   handleClick(event) {

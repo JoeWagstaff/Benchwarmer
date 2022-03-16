@@ -5,25 +5,13 @@ const Content = styled.div`
   background-color: white;
   margin: auto;
   border: 1px solid black;
-  width: 75%;
-  height: 75%;
+  width: 200px;
+  height: 200px;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 20% 20% 20% 20% 20%;
   color:black;
-`;
-const CloseButton = styled.span`
-  color: #aaaaaa;
-  grid-row-start: 1;
-  grid-column-start: 4;
-  justify-self: end;
-  padding-right: 10px;
-  font-size: 28px;
-  font-weight: bold;
-  &: hover {
-    cursor: pointer;
-    color: black;
-  }
+  border: none;
 `;
 
 const BenchName = styled.div`
@@ -34,6 +22,7 @@ const BenchName = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding:10px;
 `;
 
 const AddForm = styled.form`
@@ -44,6 +33,7 @@ const AddForm = styled.form`
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 25% 25% 25% 25%;
+  padding:10px;
 `;
 
 const NextButton = styled.button`
@@ -77,6 +67,7 @@ const ButtonDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding:10px;
 `;
 
 const InputDiv = styled.div`
@@ -86,22 +77,30 @@ const InputDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding:10px;
 `;
 
-const ReviewInput = styled.textarea`
-  grid-row-start: 3;
-  grid-column-start:1;
-  grid-column-end: span 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 250px;
-  font-family: verdana;
-`;
 const InputField = styled.input`
   height: 50px;
   width: 250px;
+`;
+
+const FinalScore = styled.div`
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FinalReview = styled.div`
+  grid-row-start: 4;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const FinalDiv = styled.div`
@@ -116,50 +115,15 @@ const FinalDiv = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
 `;
 
-const FinalName = styled.div`
-  grid-row-start: 1;
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const FinalDesc = styled.div`
-  grid-row-start: 2;
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const FinalScore = styled.div`
-  grid-row-start: 3;
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const FinalReview = styled.div`
-  grid-row-start: 4;
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-class ModalContent extends React.Component {
+class ReviewModalContent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       step: 1,
-      name: '',
-      description: '',
-      score: 0,
       review: '',
-    }
+      score: 0,
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.nextStep = this.nextStep.bind(this);
@@ -203,73 +167,27 @@ class ModalContent extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const newBench = {
-      name: this.state.name,
-      description: this.state.description,
-      location: this.props.location,
+    const newReview = {
+      bench: this.props.bench["bench_id"],
       score: this.state.score,
       review: this.state.review,
     };
-    this.props.handleAddBench(newBench);
+
+    this.props.handleAddReview(newReview);
     this.props.handleClose();
     this.setState({
       step: 1,
-      name: '',
-      description: '',
       score: 0,
       review: '',
     });
   }
 
   render() {
-    const { review, name, description, step} = this.state;
-
+    const { step, score, review } = this.state;
     switch(step) {
       case 1:
         return (
-            <Content>
-              <CloseButton onClick={this.props.handleClose}>&times;</CloseButton>
-              <AddForm>
-                <BenchName>
-                  What is this bench called?
-                </BenchName>
-                <InputDiv>
-                  <InputField type="text" name="name" value={name} placeholder="Bench Name" onChange={this.handleChange} />
-                </InputDiv>
-                <ButtonDiv>
-                  <NextButton type="submit" onClick={this.nextStep}>
-                    Next
-                  </NextButton>
-                </ButtonDiv>
-              </AddForm>
-            </Content>
-        )
-      case 2:
-        return (
           <Content>
-          <CloseButton onClick={this.props.handleClose}>&times;</CloseButton>
-          <AddForm>
-            <BenchName>
-              Describe this bench.
-            </BenchName>
-            <InputDiv>
-              <InputField type="text" name="description" value={description} placeholder="Description" onChange={this.handleChange} />
-            </InputDiv>
-            <ButtonDiv>
-            <NextButton type="submit" onClick={this.previousStep}>
-                Prev
-              </NextButton>
-              <NextButton type="submit" onClick={this.nextStep}>
-                Next
-              </NextButton>
-            </ButtonDiv>
-          </AddForm>
-        </Content>
-        )
-        case 3:
-        return (
-          <Content>
-          <CloseButton onClick={this.props.handleClose}>&times;</CloseButton>
           <AddForm >
             <BenchName>
               Rate this bench. How is it?
@@ -307,9 +225,6 @@ class ModalContent extends React.Component {
               </div>
             </InputDiv>
             <ButtonDiv>
-            <NextButton type="submit" onClick={this.previousStep}>
-                Prev
-              </NextButton>
               <NextButton type="submit" onClick={this.nextStep}>
                 Next
               </NextButton>
@@ -317,16 +232,15 @@ class ModalContent extends React.Component {
           </AddForm>
         </Content>
         )
-        case 4:
+      case 2:
         return (
           <Content>
-          <CloseButton onClick={this.props.handleClose}>&times;</CloseButton>
-          <AddForm >
+          <AddForm>
             <BenchName>
               What's the reason for your rating?
             </BenchName>
-            <InputDiv >
-              <ReviewInput type="textarea" name="review" value={review} placeholder="Review this bench" onChange={this.handleChange} />
+            <InputDiv>
+              <InputField type="text" name="review" value={review} placeholder="Review" onChange={this.handleChange} />
             </InputDiv>
             <ButtonDiv>
             <NextButton type="submit" onClick={this.previousStep}>
@@ -339,21 +253,14 @@ class ModalContent extends React.Component {
           </AddForm>
         </Content>
         )
-        case 5:
+        case 3:
         return (
           <Content>
-          <CloseButton onClick={this.props.handleClose}>&times;</CloseButton>
           <AddForm>
             <BenchName>
               Is this correct?
             </BenchName>
             <FinalDiv>
-            <FinalName>
-              {this.state.name}
-            </FinalName>
-            <FinalDesc>
-              {this.state.description}
-            </FinalDesc>
             <FinalScore>
               {this.state.score}
             </FinalScore>
@@ -372,12 +279,12 @@ class ModalContent extends React.Component {
           </AddForm>
         </Content>
         )
-        case 6:
+        case 4:
         return (
           <Content>
           <AddForm>
             <BenchName>
-              We've added this new bench!
+              We've added your review!
             </BenchName>
             <ButtonDiv>
               <NextButton type="submit" onClick={this.handleSubmit}>
@@ -391,4 +298,5 @@ class ModalContent extends React.Component {
   }
 }
 
-export default ModalContent;
+
+export default ReviewModalContent;

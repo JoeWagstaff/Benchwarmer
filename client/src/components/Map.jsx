@@ -209,7 +209,6 @@ const MapContainer = (props) => {
 
   const onSelect = bench => {
     setSelected(bench);
-    console.log(bench)
     return (<ReviewBench />)
   }
 

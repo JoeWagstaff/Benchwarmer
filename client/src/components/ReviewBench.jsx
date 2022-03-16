@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReviewModal from './ReviewModal.jsx';
+import axios from 'axios';
 
 const InfoDiv = styled.div`
   display: grid;
-  grid-template-rows: 1f 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1f 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
 `;
 const NameDiv = styled.div`
@@ -48,6 +50,16 @@ const ScoreDiv = styled.div`
 `;
 
 const ButtonDiv = styled.div`
+  grid-row-start: 6;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1%;
+`;
+
+const ReviewDiv = styled.div`
   grid-row-start: 5;
   grid-column-start: 1;
   grid-column-end: span 3;
@@ -85,15 +97,53 @@ class ReviewBench extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      showModal: false
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleAddReview = this.handleAddReview.bind(this);
+  }
+
+  //Click on add bench button opens modal
+  handleClick(event) {
+    event.preventDefault();
+    this.setState({
+      showModal: true,
+    });
+  }
+
+ //Click on x closes modal
+  handleClose() {
+    this.setState({
+      showModal: false,
+    });
+  }
+
+  handleAddReview(review) {
+    axios({
+      method: 'post',
+      url: '/api/reviews',
+      data: {
+        bench: review.bench,
+        review: review.review,
+        score: review.score
+      }
+    });
   }
 
   render() {
-    let photos;
-    if (this.props.bench.photos === undefined) {
-      photos = '';
-    } else {
-      photos = this.props.bench.photos[0];
+    const { showModal } = this.state;
+    if (showModal) {
+      return(
+        <InfoDiv>
+
+          <ReviewModal bench={this.props.bench} handleClose={this.handleClose} handleAddReview={this.handleAddReview} />
+
+
+      </InfoDiv>
+      )
     }
     return(
       <InfoDiv>
@@ -104,18 +154,20 @@ class ReviewBench extends React.Component {
           <ReviewText>{this.props.bench.description}</ReviewText>
         </DescDiv>
         <PhotoDiv>
-          <ReviewImage src={photos} />
+          <ReviewImage src={this.props.bench.photo_url} />
         </PhotoDiv>
         <ScoreDiv>
          <ReviewText> Rating:&nbsp;{this.props.bench.score}</ReviewText>
         </ScoreDiv>
+        <ReviewDiv>
+          <ReviewText>Top Review:&nbsp;{this.props.bench.reviews[0]}</ReviewText>
+        </ReviewDiv>
         <ButtonDiv>
-          <ReviewButton type="submit">
+          <ReviewButton type="submit" onClick={this.handleClick} >
             Review me!
           </ReviewButton>
         </ButtonDiv>
       </InfoDiv>
-
     )
   }
 }
