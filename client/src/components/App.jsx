@@ -25,6 +25,9 @@ const StartButton = styled.button`
   border: 2px solid black;
   height: 200px;
   width: 200px;
+  &: hover {
+    cursor: pointer;
+  }
 `
 const StartText = styled.p`
   color: #CC7000;
@@ -43,11 +46,15 @@ class App extends React.Component {
       benches: [
         {
           name: "Sand Point Bench",
-          description: "default bench",
+          description: "This is a great bench. It's comfy and looks at Lake Tahoe!",
           location: {
             lat: 39.196730,
             lng: -119.933442
-          }
+          },
+          score: 4,
+          photos: [
+            "https://i.ibb.co/z2s2PFH/beachbench.jpg"
+          ]
         },
       ],
       startingLoc: {

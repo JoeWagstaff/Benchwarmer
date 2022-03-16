@@ -8,7 +8,7 @@ const MapContainer = (props) => {
   const [selected, setSelected ] = useState({});
 
   const mapStyles = {
-    height: "80vh",
+    height: "90vh",
     width: "100%",
   };
 
@@ -231,7 +231,7 @@ const MapContainer = (props) => {
                   position={bench.location}
                   onClick={() => onSelect(bench)}
                   icon={{
-                    url: "https://i.ibb.co/4PSDDLn/benchicon.png"
+                    url: "https://i.ibb.co/j4C5shZ/tinybench.png"
                   }}
                 />
               )

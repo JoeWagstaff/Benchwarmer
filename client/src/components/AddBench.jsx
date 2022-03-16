@@ -7,12 +7,34 @@ const AddDiv = styled.div`
   grid-row-end: span 3;
   grid-column-start: 2;
   grid-column-end: 3;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ButtonsDiv = styled.div`
+  grid-row-start: 3;
+  grid-row-end: span 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const AddButton = styled.button`
   padding: 10px;
-  background-color: #00994d;
-  border-color: orange;
+  color: #00994d;
+  background-color: white;
+  border: none;
   font-weight: bold;
+  border-radius: 12px;
+  &: hover {
+    cursor: pointer;
+  };
+  &: active {
+    -webkit-box-shadow: inset 0px 0px 15px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 15px #c1c1c1;
+          box-shadow: inset 0px 0px 15px #c1c1c1;
+  };
 `
 class AddBench extends React.Component {
   constructor(props){
