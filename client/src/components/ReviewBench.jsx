@@ -138,10 +138,7 @@ class ReviewBench extends React.Component {
     if (showModal) {
       return(
         <InfoDiv>
-
           <ReviewModal bench={this.props.bench} handleClose={this.handleClose} handleAddReview={this.handleAddReview} />
-
-
       </InfoDiv>
       )
     }
@@ -160,7 +157,7 @@ class ReviewBench extends React.Component {
          <ReviewText> Rating:&nbsp;{this.props.bench.score}</ReviewText>
         </ScoreDiv>
         <ReviewDiv>
-          <ReviewText>Top Review:&nbsp;{this.props.bench.reviews[0]}</ReviewText>
+          <ReviewText>Top Review:&nbsp;{this.props.bench.review}</ReviewText>
         </ReviewDiv>
         <ButtonDiv>
           <ReviewButton type="submit" onClick={this.handleClick} >
