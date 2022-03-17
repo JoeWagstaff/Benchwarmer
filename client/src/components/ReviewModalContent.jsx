@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Content = styled.div`
   background-color: white;
   margin: auto;
+  margin-top: 0;
   border: 1px solid black;
   width: 200px;
   height: 200px;
@@ -12,6 +13,8 @@ const Content = styled.div`
   grid-template-rows: 20% 20% 20% 20% 20%;
   color:black;
   border: none;
+  font-family: verdana;
+  font-size: 14px;
 `;
 
 const BenchName = styled.div`
@@ -23,6 +26,7 @@ const BenchName = styled.div`
   align-items: center;
   justify-content: center;
   padding:10px;
+  margin-bottom: 20px;
 `;
 
 const AddForm = styled.form`
@@ -80,7 +84,7 @@ const InputDiv = styled.div`
   padding:10px;
 `;
 
-const InputField = styled.input`
+const InputField = styled.textarea`
   height: 50px;
   width: 250px;
 `;

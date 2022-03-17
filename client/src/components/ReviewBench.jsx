@@ -157,7 +157,7 @@ class ReviewBench extends React.Component {
          <ReviewText> Rating:&nbsp;{this.props.bench.score}</ReviewText>
         </ScoreDiv>
         <ReviewDiv>
-          <ReviewText>Top Review:&nbsp;{this.props.bench.review}</ReviewText>
+          <ReviewText>Top Review:&nbsp;{this.props.bench.reviews[0]}</ReviewText>
         </ReviewDiv>
         <ButtonDiv>
           <ReviewButton type="submit" onClick={this.handleClick} >
